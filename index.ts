@@ -58,7 +58,7 @@ class DrawingUtil {
             context.save()
             context.translate(w / 2, h - gap * j)
             DrawingUtil.drawLine(context, 0, -lSize * sc3, 0, -lSize * sc1)
-            DrawingUtil.drawCircle(context, (-w * 0.5 - r) * (1 - sf), gap - r, r)
+            DrawingUtil.drawCircle(context, (-w * 0.5 - r) * (1 - sf), -lSize - r, r)
             context.restore()
         }
     }
@@ -67,6 +67,7 @@ class DrawingUtil {
         context.lineCap = 'round'
         context.lineWidth = Math.min(w, h) / strokeFactor 
         context.fillStyle = colors[i]
+        context.strokeStyle = colors[i]
         DrawingUtil.drawLineDotExpand(context, scale)
     }
 }
