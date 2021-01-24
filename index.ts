@@ -210,3 +210,25 @@ class DotLineExpand {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    animator : Animator = new Animator()
+    dle : DotLineExpand = new DotLineExpand()
+
+    render(context : CanvasRenderingContext2D) {
+        this.dle.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.dle.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.dle.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
